@@ -1,0 +1,680 @@
+<html lang="en"><head>
+    <link rel="icon" href="seatsync-fotor-20251102195451.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeatSync - Smart Seat Allocation for Educational Institutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #7c9885;
+        }
+
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #4a4a4a;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .download-btn {
+            background: #7c9885;
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(124, 152, 133, 0.3);
+        }
+
+        .download-btn:hover {
+            background: #6a8573;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 152, 133, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .features {
+            background: #ffffff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #7c9885;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: #2d2d2d;
+        }
+
+        .feature-card p {
+            color: #5a5a5a;
+            line-height: 1.7;
+        }
+
+        .how-it-works {
+            background: #f5f5f5;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            padding: 1.5rem;
+        }
+
+        .step-number {
+            background: #7c9885;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            margin-bottom: 0.5rem;
+            color: #2d2d2d;
+        }
+
+        .benefits {
+            background: #ffffff;
+        }
+
+        .benefit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .checkmark {
+            color: #7c9885;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #d0d0d0;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: #a0a0a0;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .steps {
+                flex-direction: column;
+            }
+        }
+    </style>
+<style id="__web-inspector-hide-shortcut-style__">
+.__web-inspector-hide-shortcut__, .__web-inspector-hide-shortcut__ *
+{
+    visibility: hidden !important;
+}
+.footer-links {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.footer-link {
+    color: #7c9885;
+    text-decoration: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.footer-link:hover {
+    color: #ffffff;
+    background: rgba(124, 152, 133, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(124, 152, 133, 0.3);
+}
+
+.separator {
+    margin: 0 0.5rem;
+    color: #4a4a4a;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.3s ease;
+    overflow-y: auto;
+}
+
+.modal.show {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal.show .modal-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(124, 152, 133, 0.2);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.close {
+    color: #7c9885;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 1;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close:hover {
+    color: #ffffff;
+    background: rgba(124, 152, 133, 0.3);
+    transform: rotate(90deg) scale(1.1);
+}
+
+.modal-body {
+    padding: 2rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    color: #2d2d2d;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: #7c9885;
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: #6a8573;
+}
+
+.modal-body h3 {
+    color: #1a1a1a;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #7c9885;
+}
+
+.modal-body p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: #4a4a4a;
+}
+
+.modal-body ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.modal-body ul li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+    color: #4a4a4a;
+}
+
+.effective-date {
+    background: #f9f9f9;
+    padding: 0.8rem;
+    border-left: 4px solid #7c9885;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.contact-info {
+    background: #7c9885;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    text-align: center;
+    font-weight: 500;
+}
+</style></head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Seat<span>Sync</span></div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Smart Seat Allocation Made Simple</h1>
+        <p>Pick. Sit. Chill. We Track Everything Else.</p>
+        <a href="#download" class="download-btn">Download App</a>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Comprehensive Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎫</div>
+                    <h3>Easy Seat Booking</h3>
+                    <p>Students can book their preferred seats for each lecture, just like booking movie tickets. Visual seat map shows availability in real-time.</p>
+                </div>
+
+                
+
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Student Information</h3>
+                    <p>View complete details of students including name, roll number, and contact information for each booked seat.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🪑</div>
+                    <h3>Seat Status Tracking</h3>
+                    <p>Real-time visualization of which seats are occupied or available, helping optimize classroom space utilization.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Damage Reporting</h3>
+                    <p>Students and faculty can report damaged benches or seats directly through the app, ensuring quick maintenance.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Multi-Lecture Management</h3>
+                    <p>Track bookings across multiple lectures and subjects.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Accountability & Academic Growth</h3>
+                    <p>By booking specific seats in advance, students become more consistent and responsible in attending lectures they’ve reserved, leading to improved discipline, higher attendance, and ultimately better academic performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Download &amp; Register</h3>
+                    <p>Install the app and register with your student or faculty credentials</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Select Lecture</h3>
+                    <p>Choose your subject and lecture time from your schedule</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Book Your Seat</h3>
+                    <p>Pick your preferred seat from the interactive seating layout</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Track &amp; Manage</h3>
+                    <p>Monitor your bookings and report any issues instantly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Benefits for Your Institution</h2>
+            <div class="benefit-list">
+                
+                
+                
+                <div class="benefit-item">
+                    <span class="checkmark">✓</span>
+                    <div>
+                        <strong>Quick Maintenance</strong>
+                        <p>Identify and fix facility issues promptly with instant damage reports</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="checkmark">✓</span>
+                    <div>
+                        <strong>Student Satisfaction</strong>
+                        <p>Give students the freedom to choose where they sit comfortably</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="checkmark">✓</span>
+                    <div>
+                        <strong>Data Analytics</strong>
+                        <p>Generate insights on space utilization and attendance patterns</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="checkmark">✓</span>
+                    <div>
+                        <strong>Quick Maintenance</strong>
+                        <p>Identify and fix facility issues promptly with instant damage reports</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="download">
+        <h2>Ready to Transform Your Campus?</h2>
+        <p>Join us to hit those scores!.
+</p>
+        <button class="download-btn" onclick="alert('Download links will be available soon on App Store and Google Play Store!')">Download App
+</button>
+    </section>
+
+    <footer class="footer">
+    <p>&copy; 2025 SeatSync. All rights reserved.</p>
+    <p>Modernizing education, one seat at a time.</p>
+    <div class="footer-links">
+        <a href="#" onclick="openModal('privacy'); return false;" class="footer-link">Privacy Policy</a>
+        <span class="separator">|</span>
+        <a href="#" onclick="openModal('terms'); return false;" class="footer-link">Terms of Service</a>
+    </div>
+</footer>
+    <!-- Privacy Policy Modal -->
+<div id="privacyModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🛡️ Privacy Policy</h2>
+            <span class="close" onclick="closeModal('privacy')">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p class="effective-date"><strong>Effective Date:</strong> November 2, 2025</p>
+            
+            <h3>Information We Collect</h3>
+            <p>We respect your privacy. Our app collects basic information such as your name, roll number, and contact details only for seat booking, attendance tracking, and identification within your institution.</p>
+            
+            <h3>How We Use Your Information</h3>
+            <p>Your information is used exclusively for:</p>
+            <ul>
+                <li>Seat booking management and tracking</li>
+                <li>Attendance recording based on bookings</li>
+                <li>Student identification for booked seats</li>
+                <li>Processing damage reports and facility maintenance</li>
+                <li>Communication regarding bookings or issues</li>
+            </ul>
+            
+            <h3>Data Security</h3>
+            <p>All stored data is secured and used solely for academic and maintenance purposes. We do not share your data with third parties. All personal data is stored securely on encrypted servers with access restricted to authorized institutional staff only.</p>
+            
+            <h3>Your Rights</h3>
+            <p>You have the right to access, update, or request deletion of your personal information by contacting your institution's administration.</p>
+            
+            <h3>Changes to This Policy</h3>
+            <p>We may update this Privacy Policy from time to time. Continued use of the app after changes means you accept the updated policy.</p>
+            
+            <p class="contact-info">For questions about this Privacy Policy, please contact your institution's IT department.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Terms of Service Modal -->
+<div id="termsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>📜 Terms of Service</h2>
+            <span class="close" onclick="closeModal('terms')">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p class="effective-date"><strong>Effective Date:</strong> November 2, 2025</p>
+            
+            <h3>Acceptance of Terms</h3>
+            <p>By using our seat-booking app, you agree to use it responsibly for booking lecture seats and reporting issues only. These terms constitute a binding agreement between you and your educational institution.</p>
+            
+            <h3>Permitted Use</h3>
+            <p>You agree to use SeatSync for:</p>
+            <ul>
+                <li>Booking seats for lectures you are enrolled in</li>
+                <li>Viewing your booking history</li>
+                <li>Reporting genuine facility damage or issues</li>
+                <li>Accessing your attendance records</li>
+            </ul>
+            
+            <h3>Prohibited Activities</h3>
+            <p>The following activities are strictly prohibited:</p>
+            <ul>
+                <li>Misuse of the booking system or making false bookings</li>
+                <li>Submitting false damage reports</li>
+                <li>Sharing or misusing others' personal information</li>
+                <li>Attempting to access unauthorized areas of the system</li>
+                <li>Using the app for any commercial purposes</li>
+            </ul>
+            
+            <h3>Account Suspension</h3>
+            <p>The institution reserves the right to suspend or terminate access for policy violations, including but not limited to repeated misuse, false reporting, or violation of privacy rules.</p>
+            
+            <h3>Disclaimer</h3>
+            <p>The app is provided "as is" without warranties. While we strive for accuracy, we do not guarantee uninterrupted service or error-free operation.</p>
+            
+            <h3>Changes to Terms</h3>
+            <p>We may update these terms occasionally. Continued use of the app means you accept those changes. You will be notified of significant changes through the app.</p>
+            
+            <p class="contact-info">For questions about these Terms of Service, please contact your institution's administration.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(type) {
+        const modal = document.getElementById(type + 'Modal');
+        modal.style.display = 'block';
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+    }
+
+    function closeModal(type) {
+        const modal = document.getElementById(type + 'Modal');
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.classList.remove('show');
+            setTimeout(() => {
+                event.target.style.display = 'none';
+            }, 300);
+        }
+    }
+</script>
+
+</body></html>
